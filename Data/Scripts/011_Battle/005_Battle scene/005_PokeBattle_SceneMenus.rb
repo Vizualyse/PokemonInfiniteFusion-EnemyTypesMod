@@ -388,8 +388,14 @@ class FightMenuDisplay < BattleMenuBase
         button.z          = self.z + ((i==@index) ? 4 : 3)
 
         # Effectiveness text
-        if moves[i].effectiveness/8 != 1
-          textPos.push([_INTL("{1}x",moves[i].effectiveness/8),
+        if moves[i].damagingMove? & (moves[i].effectiveness/8 != 1)
+          @effectiveness = moves[i].effectiveness/8.to_f
+          # Round whole numbers
+          if @effectiveness % 1 == 0
+            @effectiveness = @effectiveness.to_int
+          end
+
+          textPos.push([_INTL("{1}x",@effectiveness),
               button.x-22+@buttonBitmap.width/2,(i < 2 ? 6 : 2 + BUTTON_HEIGHT),1,TEXT_BASE_COLOR,nil])
         end
       end
