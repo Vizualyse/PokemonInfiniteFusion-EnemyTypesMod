@@ -275,7 +275,7 @@ class PokemonDataBox < SpriteWrapper
                      0,(s-1)*STATUS_ICON_HEIGHT,-1,STATUS_ICON_HEIGHT])
     end
     #Draw type icons (foe Pokémon only)
-    if @battler.opposes?(0)
+    if @battler.opposes?(0) && defined?(@battler.type1) && defined?(@battler.type2)
       type1_number = GameData::Type.get(@battler.type1).id_number
       type2_number = GameData::Type.get(@battler.type2).id_number
       if type1_number == type2_number
