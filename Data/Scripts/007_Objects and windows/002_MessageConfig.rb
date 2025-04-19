@@ -104,7 +104,7 @@ module MessageConfig
   def self.pbSettingToTextSpeed(speed)
     case speed
     when 0 then return 1
-    when 1 then return -2
+    when 1 then return -3
     when 2 then return -999
     end
     return TEXT_SPEED || 1
@@ -224,7 +224,7 @@ def pbPositionFaceWindow(facewindow,msgwindow)
   end
 end
 
-def pbPositionNearMsgWindow(cmdwindow,msgwindow,side)
+def pbPositionNearMsgWindow(cmdwindow,msgwindow,side, x_offset=nil,y_offset=nil)
   return if !cmdwindow
   if msgwindow
     height=[cmdwindow.height,Graphics.height-msgwindow.height].min
@@ -251,6 +251,10 @@ def pbPositionNearMsgWindow(cmdwindow,msgwindow,side)
     cmdwindow.x=0
     cmdwindow.y=0
   end
+  cmdwindow.x+= x_offset if x_offset
+  cmdwindow.y+= y_offset if y_offset
+
+
 end
 
 # internal function
